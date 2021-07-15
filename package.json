@@ -1,0 +1,23 @@
+{
+  "name": "scam-script",
+  "version": "1.0.0",
+  "description": "",
+  "main": "start.js",
+  "scripts": {
+    "start": "nodemon start.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeromask1337/Scam-Script.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zeromask1337/Scam-Script/issues"
+  },
+  "homepage": "https://github.com/zeromask1337/Scam-Script#readme",
+  "dependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
