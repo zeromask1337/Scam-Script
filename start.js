@@ -46,7 +46,7 @@
 // root(inputObj);
 
 const fs = require("fs");
-// const fsPromises = fs.promises;
+const path = require('path')
 let rootPath = "./";
 
 //Checks if directory exists
@@ -54,15 +54,20 @@ const isDir = (dirPath) =>
 	fs.existsSync(dirPath) && fs.lstatSync(dirPath).isDirectory();
 
 //Main function
-const scamFinder = (startPath) => {
+const scamFinder = (dir) => {
 	let box = [];
 
-	fs.readdir(startPath, function (err, files) {
-		try {
-			console.log("\x1b[33m%s\x1b[0m", "Opening folder on: ", startPath);
-			// box.push(...[startPath + files]);
-			iterator(box);
-		} catch (err) {}
+	fs.readdir(dir, function (err, list) {
+		if (err) throw err;
+		
+		console.log("\x1b[33m%s\x1b[0m", "Opening folder: ", dir);
+		for (file of list) {
+			file = path.resolve(dir, file);
+
+		}
+		box.push(...list);
+		iterator(box);
+		
 	});
 };
 
@@ -71,13 +76,15 @@ const iterator = (plate) => {
 		let fullPath = rootPath + item;
 		//If item is folder then activate recursion, else console.log filename
 		if (isDir(fullPath)) {
-			console.log("\x1b[36m%s\x1b[0m", "Found folder on: ", fullPath);
+			console.log("\x1b[36m%s\x1b[0m", "    Folder: ", fullPath);
 			scamFinder(fullPath);
 		} else {
-			console.log("file: ", fullPath);
+			console.log("    file: ", fullPath);
 		}
 		// console.log(fullPath);
 	}
 };
 
 scamFinder(rootPath);
+
+// https://ourcodeworld.com/articles/read/420/how-to-read-recursively-a-directory-in-node-js
